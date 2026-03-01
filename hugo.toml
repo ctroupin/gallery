@@ -1,0 +1,6 @@
+baseURL = "https://ctroupin.github.io/gallery"
+languageCode = 'en-us'
+title = 'Charles Troupin Gallery'
+theme = 'gallery'
+[params]
+  customCSS = ["css/custom.css"]

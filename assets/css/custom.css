@@ -1,0 +1,41 @@
+/* Apply to the whole site */
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #f5f5f5;
+}
+
+body, html {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Ensure the PhotoSwipe lightbox background is also dark */
+.pswp__bg {
+  background: #000 !important;
+}
+
+.centered-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.centered-tags a {
+  /* Set a dark background and white text for high contrast */
+  background-color: #0f6f00; 
+  color: #fff !important; /* Forces white text on dark background */
+  
+  padding: 6px 12px;
+  border-radius: 20px; /* Makes them pill-shaped */
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Add a hover effect so users know they are clickable */
+.centered-tags a:hover {
+  background-color: #0f6f00;
+  color: #00d1b2 !important; /* Example accent color on hover */
+}

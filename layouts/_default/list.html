@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ partial "title.html" . }}
+  <section class="galleries">
+    {{ range where .Pages "Params.private" "ne" true }}
+      {{ partial "album-card.html" . }}
+    {{ end }}
+  </section>
+  {{ with .Params.tags }}
+  <div class="album-tags">
+  {{ range . }}
+    <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}" class="tag-link">#{{ . }}</a>
+  {{ end }}
+  </div>
+{{ end }}
+{{ end }}
