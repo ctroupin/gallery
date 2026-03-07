@@ -1,9 +1,10 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
   <section class="galleries">
-    {{/* Use .Sections to find sub-folders and .RegularPages for images */}}
+    {{/* Get both sub-folders AND individual items in this specific directory */}}
     {{ $items := union .Sections .RegularPages }}
     
+    {{/* Range through them, excluding private ones */}}
     {{ range where $items "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
