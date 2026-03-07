@@ -1,8 +1,14 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
   <section class="galleries">
-    {{/* .Pages includes both sub-folders (sections) and individual items */}}
-    {{ range .Pages }}
+    {{/* 
+       Combine Sections (folders) and RegularPages (images/files).
+       This ensures 'islas-canarias' shows on the Home Page, 
+       and 'lanzarote' shows inside 'islas-canarias'.
+    */}}
+    {{ $items := union .Sections .RegularPages }}
+    
+    {{ range where $items "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
