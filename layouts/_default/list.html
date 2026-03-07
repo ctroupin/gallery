@@ -1,18 +1,8 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
   <section class="galleries">
-    {{/* 1. Define the correct page collection */}}
-    {{ $pages := .Pages }}
-    {{ if .IsHome }}
-      {{/* On the home page, specifically include all top-level sections */}}
-      {{ $pages = .Sections }}
-    {{ else }}
-      {{/* Inside a section, show both sub-sections and regular items */}}
-      {{ $pages = union .Sections .RegularPages }}
-    {{ end }}
-
-    {{/* 2. Render the gallery cards */}}
-    {{ range where $pages "Params.private" "ne" true }}
+    {{/* .Pages includes both sub-folders (sections) and individual items */}}
+    {{ range .Pages }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
