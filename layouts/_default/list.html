@@ -1,15 +1,22 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
   <section class="galleries">
-    {{/* Get both sub-folders AND individual items in this specific directory */}}
-    {{ $items := union .Sections .RegularPages }}
-    
-    {{/* Range through them, excluding private ones */}}
-    {{ range where $items "Params.private" "ne" true }}
+    {{/* 1. Define the correct page collection */}}
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+      {{/* On the home page, specifically include all top-level sections */}}
+      {{ $pages = .Sections }}
+    {{ else }}
+      {{/* Inside a section, show both sub-sections and regular items */}}
+      {{ $pages = union .Sections .RegularPages }}
+    {{ end }}
+
+    {{/* 2. Render the gallery cards */}}
+    {{ range where $pages "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
-  
+
   {{ with .Params.tags }}
     <div class="album-tags">
       {{ range . }}
