@@ -1,8 +1,10 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
   <section class="galleries">
-    {{/* .Pages includes both sub-sections (albums) and regular pages (images) */}}
-    {{ range where .Pages "Params.private" "ne" true }}
+    {{/* Use .Sections to find sub-folders and .RegularPages for images */}}
+    {{ $items := union .Sections .RegularPages }}
+    
+    {{ range where $items "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
