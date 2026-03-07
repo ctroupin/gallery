@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ partial "title.html" . }}
+  <section class="galleries">
+    {{/* Explicitly target top-level folders (Sections) */}}
+    {{ range .Sections }}
+      {{ partial "album-card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
