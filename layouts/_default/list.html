@@ -2,21 +2,16 @@
   {{ partial "title.html" . }}
   <section class="galleries">
     {{/* 
-      1. On the Homepage, we want to find all top-level Sections (Albums).
-      2. Inside an Album, we want to find its Sub-sections (Sub-albums).
+      1. .Sections targets sub-folders (like 'islas-canarias' on home or 'lanzarote' inside it).
+      2. .RegularPages targets actual images inside a folder.
+      3. union combines them so both sub-albums and images show up as cards.
     */}}
-    {{ $collection := .Sections }}
+    {{ $items := union .Sections .RegularPages }}
     
-    {{/* If there are no sub-sections, show the actual images (Pages) */}}
-    {{ if not $collection }}
-      {{ $collection = .RegularPages }}
-    {{ end }}
-
-    {{ range where $collection "Params.private" "ne" true }}
+    {{ range where $items "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
-
 
   {{ with .Params.tags }}
     <div class="album-tags">
