@@ -1,7 +1,13 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
   <section class="galleries">
-    {{ range where .Pages "Params.private" "ne" true }}
+    {{/* 1. Loop through subfolders (sections) */}}
+    {{ range .Sections }}
+      {{ partial "album-card.html" . }}
+    {{ end }}
+
+    {{/* 2. Loop through individual items (pages) in this folder */}}
+    {{ range where .RegularPages "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
