@@ -2,16 +2,21 @@
   {{ partial "title.html" . }}
   <section class="galleries">
     {{/* 
-       Combine Sections (folders) and RegularPages (images/files).
-       This ensures 'islas-canarias' shows on the Home Page, 
-       and 'lanzarote' shows inside 'islas-canarias'.
+      1. On the Homepage, we want to find all top-level Sections (Albums).
+      2. Inside an Album, we want to find its Sub-sections (Sub-albums).
     */}}
-    {{ $items := union .Sections .RegularPages }}
+    {{ $collection := .Sections }}
     
-    {{ range where $items "Params.private" "ne" true }}
+    {{/* If there are no sub-sections, show the actual images (Pages) */}}
+    {{ if not $collection }}
+      {{ $collection = .RegularPages }}
+    {{ end }}
+
+    {{ range where $collection "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
+
 
   {{ with .Params.tags }}
     <div class="album-tags">
