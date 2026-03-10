@@ -1,3 +1,3 @@
 ---
-title: "Islas Canarias"
+title: "Islas Canarias 🇮🇨"
 ---

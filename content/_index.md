@@ -1,3 +1,3 @@
 ---
-title: "ok"
+title: "Nothing important happened today"
 ---
