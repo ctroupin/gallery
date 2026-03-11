@@ -1,3 +1,3 @@
 ---
-title: Ibiza
+title: "Eivissa | Ibiza"
 ---
